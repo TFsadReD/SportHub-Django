@@ -16,19 +16,23 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
+import os
+from dotenv import load_dotenv
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w1#b%so=-j9xni0dg#ft-i#kvsg*yh-=(w49t%90n4@d-i2)fy'
+# Подгрузка из .env всех ключей
+load_dotenv()
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# ПРЕДУПРЕЖДЕНИЕ О БЕЗОПАСНОСТИ: сохраняйте ключ в секрете
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
+# ПРЕДУПРЕЖДЕНИЕ О БЕЗОПАСНОСТИ: не допустите использование вкл Debug в продакшене
+DEBUG = os.environ.get("DEBUG", "False")
+
 
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# Определение приложений (компонентов проекта)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -99,19 +103,23 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# Интернационализация (локализация)
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
+# Static: Статические файлы (CSS, JavaScript, изображения)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Медиа-файлы (все, что загружают пользователи)
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'

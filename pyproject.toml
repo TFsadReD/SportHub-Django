@@ -1,0 +1,10 @@
+[project]
+name = "SportHub"
+version = "0.1"
+description = "Тестовое задание на Django"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=6.0.7",
+    "dotenv>=0.9.9",
+]

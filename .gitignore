@@ -1,0 +1,45 @@
+# >>> Python файлы (кэш или скомпилированные файлы) <<<
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# >>> Дистрибутивы и сборка <<<
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# >>> Медия <<<
+media/
+
+# >>> База Данных <<<
+*.sqlite3
+*.sqlite3-journal
+
+# >>> Файлы логов <<<
+*.log
+
+# >>> .директории <<<
+.venv
+.git
+.vscode/
+*.code-workspace
+
+# >>> .файлы <<<
+.env
+.env.local
+.env.*.local

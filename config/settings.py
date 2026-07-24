@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Определение приложений (компонентов проекта)
 
 INSTALLED_APPS = [
+    "landing",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

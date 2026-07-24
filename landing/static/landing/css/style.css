@@ -1,0 +1,534 @@
+/*
+    >>> Секция для основных тэгов <<<
+*/
+
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    background-color: #0f1115;
+    color: #ffffff;
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+}
+
+
+/*
+    >>> Секция для header <<<
+*/
+
+
+.header-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.custom-navbar {
+    background-color: #171a21;
+    border: 1px solid #242936;
+    border-radius: 50px;
+    padding: 12px 28px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+
+.logo-orange {
+    color: #fc7b02;
+}
+
+.logo-white {
+    color: #ffffff;
+}
+
+.nav-links {
+    gap: 28px;
+}
+
+.nav-link-item {
+    text-decoration: none;
+    color: #b0b7c3;
+    font-weight: 600;
+    font-size: 15px;
+    transition: color 0.2s ease;
+}
+
+.nav-link-item:hover {
+    color: #fc7b02;
+}
+
+.header-actions {
+    gap: 20px;
+}
+
+.phone-link {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.btn-subscribe {
+    background-color: #fc7b02;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 50px;
+    padding: 10px 22px;
+    border: none;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-subscribe:hover {
+    background-color: #e55c00;
+    color: #ffffff;
+}
+
+.btn-subscribe:active {
+    transform: scale(0.98);
+}
+
+.logo-img {
+    height: 48px;
+    width: auto;
+    margin-right: 5px;
+    object-fit: contain;
+}
+
+
+/*
+    >>> Секция для общих стилей <<<
+*/
+
+
+.site-section {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.site-title {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.site-subtitle {
+    font-size: 18px;
+    color: #8b93a0;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.site-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid #242936;
+}
+
+.site-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.site-card {
+    background-color: #171a21;
+    border: 1px solid #242936;
+    border-radius: 32px;
+    padding: 36px;
+    height: 100%;
+}
+
+
+/*
+    >>> Секция для табов и списков <<<
+*/
+
+
+.tabs-wrapper {
+    display: inline-flex;
+    background-color: #222733;
+    padding: 4px;
+    border-radius: 50px;
+    margin-bottom: 32px;
+    align-self: flex-start;
+}
+
+.tab-btn {
+    border: none;
+    background: transparent;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #8b93a0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab-btn.active {
+    background-color: #fc7b02;
+    color: #ffffff;
+}
+
+.tab-badge {
+    display: inline-block;
+    background-color: #fc7b02;
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.tab-content {
+    display: none;
+    opacity: 0;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeInTab 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeInTab {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.features-list li {
+    font-size: 16px;
+    font-weight: 500;
+    color: #e1e5ec;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.check-icon {
+    color: #fc7b02;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.feature-icon {
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+
+/*
+    >>> Секция для карточек тарифов <<<
+*/
+
+
+.price-card {
+    background-color: #171a21;
+    border: 1px solid #242936;
+    border-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.price-header {
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price-header-base {
+    background-color: #222733;
+    border-bottom: 1px solid #242936;
+}
+
+.price-header-smart {
+    background-color: #fc7b02;
+    color: #ffffff;
+}
+
+.price-header-ultimate {
+    background: linear-gradient(135deg, #ffd000 0%, #ff8c00 100%);
+    color: #0f1115;
+    border-bottom: none;
+}
+
+.price-header-ultimate .price-name,
+.price-header-ultimate .price-value {
+    color: #0f1115;
+}
+
+.price-name {
+    font-size: 26px;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.price-value {
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.price-period {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.price-card-featured {
+    border: 2px solid #fc7b02;
+    box-shadow: 0 0 25px rgba(252, 123, 2, 0.15);
+}
+
+.price-badge {
+    position: absolute;
+    top: 0;
+    right: 28px;
+    background-color: #ffffff;
+    color: #171a21;
+    font-size: 11px;
+    font-weight: 900;
+    padding: 4px 12px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    letter-spacing: 1px;
+}
+
+.price-card-ultimate {
+    border: 2px solid #ffd000;
+    box-shadow: 0 0 25px rgba(255, 208, 0, 0.2);
+}
+
+.price-card-ultimate:hover {
+    box-shadow: 0 0 35px rgba(255, 208, 0, 0.35);
+}
+
+.price-badge-ultimate {
+    background: linear-gradient(135deg, #ffd000 0%, #ff8c00 100%);
+    color: #0f1115;
+    font-weight: 900;
+}
+
+.price-body {
+    padding: 28px;
+    flex-grow: 1;
+}
+
+.price-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.price-features li {
+    font-size: 15px;
+    font-weight: 500;
+    color: #d1d5db;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.price-check {
+    color: #fc7b02;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 1.3;
+    flex-shrink: 0;
+}
+
+.price-check-ultimate {
+    color: #ffd000;
+}
+
+.price-footer {
+    padding: 0 28px 28px 28px;
+}
+
+.btn-price {
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-price-base {
+    background-color: #222733;
+    color: #ffffff;
+}
+
+.btn-price-base:hover {
+    background-color: #2e3445;
+}
+
+.btn-price-smart {
+    background-color: #fc7b02;
+    color: #ffffff;
+}
+
+.btn-price-smart:hover {
+    background-color: #e55c00;
+}
+
+.btn-price-ultimate {
+    background: linear-gradient(135deg, #ffd000 0%, #ff8c00 100%);
+    color: #0f1115;
+    font-weight: 900;
+    box-shadow: 0 4px 15px rgba(255, 208, 0, 0.2);
+}
+
+.btn-price-ultimate:hover {
+    background: linear-gradient(135deg, #ffe047 0%, #ffa200 100%);
+    box-shadow: 0 6px 20px rgba(255, 208, 0, 0.4);
+    color: #0f1115;
+}
+
+.btn-price:active {
+    transform: scale(0.98);
+}
+
+
+/*
+    >>> Секция для тренеров <<<
+*/
+
+
+.trainer-card {
+    background-color: #171a21;
+    border: 1px solid #242936;
+    border-radius: 28px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trainer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.trainer-img-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    background-color: #222733;
+    overflow: hidden;
+}
+
+.trainer-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trainer-experience {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background-color: #ffffff;
+    color: #0f1115;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.trainer-info {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.trainer-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+}
+
+.trainer-role {
+    font-size: 14px;
+    color: #8b93a0;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+}
+
+.btn-trainer-more {
+    width: 100%;
+    padding: 10px;
+    border-radius: 50px;
+    background-color: transparent;
+    border: 1px solid #242936;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-trainer-more:hover {
+    background-color: #fc7b02;
+    border-color: #fc7b02;
+    color: #ffffff;
+}

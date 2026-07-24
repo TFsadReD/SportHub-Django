@@ -1,0 +1,408 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная - SportHub{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'landing/css/style.css' %}">
+{% endblock %}
+
+
+{% block code %}
+<script src="{% static 'landing/js/index.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+{% comment %} >>> Заголовок <<< {% endcomment %}
+<header class="header-wrapper">
+    <div class="container-xl">
+        <nav class="custom-navbar d-flex align-items-center justify-content-between">
+
+            <a href="#" class="logo d-flex align-items-center text-decoration-none">
+                <img src="{% static 'landing/images/flavicon.png' %}" alt="Logo" class="logo-img">
+                <span class="logo-white">Sport</span><span class="logo-orange">Hub</span>
+            </a>
+
+            <div class="nav-links d-none d-lg-flex align-items-center">
+                <a href="#gym" class="nav-link-item">Тренажёрный зал</a>
+                <a href="#spa" class="nav-link-item">СПА-Зона</a>
+                <a href="#prices" class="nav-link-item">Тарифы</a>
+                <a href="#trainers" class="nav-link-item">Тренеры</a>
+                <a href="#faq" class="nav-link-item">Вопросы и Ответы</a>
+            </div>
+
+            <div class="header-actions d-flex align-items-center">
+                <a href="tel:+74994720121" class="phone-link text-decoration-none d-none d-sm-inline">
+                    +7 (800) 555-35-35
+                </a>
+                <a href="#purchase" class="btn btn-subscribe">
+                    Купить подписку
+                </a>
+            </div>
+
+        </nav>
+    </div>
+</header>
+
+
+{% comment %} >>> Секция -> Тренажёрный Зал <<< {% endcomment %}
+
+
+<section id="gym" class="site-section">
+    <div class="container-xl">
+
+        <h2 class="site-title">Тренажёрный Зал</h2>
+        <p class="site-subtitle">Площадь: 2100 м²</p>
+
+        <div class="row g-4 align-items-stretch">
+
+            <div class="col-lg-6">
+                <div class="site-image-wrapper">
+                    <img src="{% static 'landing/images/sporthub_gym.png' %}" alt="Тренажёрный зал" class="site-image">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="site-card">
+
+                    <div class="tabs-wrapper">
+                        <button class="tab-btn active" id="tab-standards-btn" onclick="switchTab('standards')">Высокие стандарты</button>
+                        <button class="tab-btn" id="tab-amenities-btn" onclick="switchTab('amenities')">Удобства</button>
+                    </div>
+
+                    <div id="tab-standards" class="tab-content active">
+                        <ul class="features-list">
+                            <li>
+                                <span class="check-icon">&#10003;</span>
+                                Продуманное зонирование для силовых и кардио-тренировок
+                            </li>
+                            <li>
+                                <span class="check-icon">&#10003;</span>
+                                Мощная система вентиляции и климат-контроля с поддержанием 19°C
+                            </li>
+                            <li>
+                                <span class="check-icon">&#10003;</span>
+                                Премиальное тренажёрное оборудование от бренда Technogym
+                            </li>
+                            <li>
+                                <span class="check-icon">&#10003;</span>
+                                Просторный дублированный парк тренажеров без очередей
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="tab-amenities" class="tab-content">
+                        <ul class="features-list">
+                            <li>
+                                <span class="feature-icon">🏋️</span>
+                                Бесплатный доступ к вводной персональной тренировке
+                            </li>
+                            <li>
+                                <span class="feature-icon">🚿</span>
+                                Просторные раздевалки с финскими саунами и душевыми
+                            </li>
+                            <li>
+                                <span class="feature-icon">🅿️</span>
+                                Бесплатная охраняемая парковка для членов клуба на 3 часа
+                            </li>
+                            <li>
+                                <span class="feature-icon">🔒</span>
+                                Умные шкафчики с открытием по электронному браслету
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+{% comment %} >>> Секция -> СПА-Зона <<< {% endcomment %}
+
+
+<section id="spa" class="site-section">
+    <div class="container-xl">
+
+        <h2 class="site-title">СПА-ЗОНА</h2>
+        <p class="site-subtitle">Площадь: 800 м²</p>
+
+        <div class="row g-4 align-items-stretch">
+
+            <div class="col-lg-6">
+                <div class="site-card d-flex flex-column">
+
+                    <div class="tabs-wrapper">
+                        <span class="tab-badge">Удобства</span>
+                    </div>
+
+                    <ul class="features-list">
+                        <li>
+                            <span class="feature-icon">🔥</span>
+                            Финская сауна и турецкий хаммам с ароматерапией
+                        </li>
+                        <li>
+                            <span class="feature-icon">🌊</span>
+                            Зона гидромассажа и просторное джакузи с подогревом
+                        </li>
+                        <li>
+                            <span class="feature-icon">🧊</span>
+                            Контрастные купели и тропический душ впечатлений
+                        </li>
+                        <li>
+                            <span class="feature-icon">🛋️</span>
+                            Зона релаксации с анатомическими шезлонгами
+                        </li>
+                        <li>
+                            <span class="feature-icon">💆</span>
+                            Кабинеты спортивного и расслабляющего массажа
+                        </li>
+                        <li>
+                            <span class="feature-icon">🥤</span>
+                            Фитобар со свежевыжатыми соками и травяными чаями
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="site-image-wrapper">
+                    <img src="{% static 'landing/images/sporthub_spa.png' %}" alt="СПА-Зона" class="site-image">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+{% comment %} >>> Секция -> Тарифы <<< {% endcomment %}
+
+
+<section id="prices" class="site-section">
+    <div class="container-xl">
+
+        <h2 class="site-title">ТАРИФЫ</h2>
+        <p class="site-subtitle">Выберите идеальный формат тренировок для своих целей</p>
+
+        <div class="row g-4 align-items-stretch">
+
+            <div class="col-lg-4">
+                <div class="price-card">
+                    <div class="price-header price-header-base">
+                        <h3 class="price-name">BASE</h3>
+                        <div class="price-value">1 500 <span class="price-period">₽/мес</span></div>
+                    </div>
+                    <div class="price-body">
+                        <ul class="price-features">
+                            <li><span class="price-check">&#10003;</span> Безлимитный доступ в тренажёрный зал 24/7</li>
+                            <li><span class="price-check">&#10003;</span> Вводная персональная тренировка с топ-тренером</li>
+                            <li><span class="price-check">&#10003;</span> Умные шкафчики с браслетом и сауны в раздевалках</li>
+                            <li><span class="price-check">&#10003;</span> Бесплатная охраняемая парковка на 3 часа</li>
+                            <li><span class="price-check">&#10003;</span> Заряд идеального настроения на весь день</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer">
+                        <button class="btn btn-price btn-price-base">Выбрать BASE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="price-card price-card-featured">
+                    <div class="price-badge">ПОПУЛЯРНЫЙ</div>
+                    <div class="price-header price-header-smart">
+                        <h3 class="price-name">SMART</h3>
+                        <div class="price-value">2 900 <span class="price-period">₽/мес</span></div>
+                    </div>
+                    <div class="price-body">
+                        <ul class="price-features">
+                            <li><span class="price-check">&#10003;</span> Все возможности тарифа BASE</li>
+                            <li><span class="price-check">&#10003;</span> Безлимитный доступ в СПА-зону и джакузи</li>
+                            <li><span class="price-check">&#10003;</span> Полный анализ состава тела InBody каждый месяц</li>
+                            <li><span class="price-check">&#10003;</span> Доступ к 50+ направлениям групповых программ</li>
+                            <li><span class="price-check">&#10003;</span> Безлимитный фиточай и напитки в фитобаре</li>
+                            <li><span class="price-check">&#10003;</span> Рост мышц ускоряется на 15% просто по факту визита</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer">
+                        <button class="btn btn-price btn-price-smart">Выбрать SMART</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="price-card price-card-ultimate">
+                    <div class="price-badge price-badge-ultimate">VIP МАКСИМУМ</div>
+
+                    <div class="price-header price-header-ultimate">
+                        <h3 class="price-name">ULTIMATE</h3>
+                        <div class="price-value">4 500 <span class="price-period">₽/мес</span></div>
+                    </div>
+
+                    <div class="price-body">
+                        <ul class="price-features">
+                            <li><span class="price-check price-check-ultimate">&#10003;</span> Все возможности тарифов BASE + SMART</li>
+                            <li><span class="price-check price-check-ultimate">&#10003;</span> 4 гостевых визита в месяц для друзей или семьи</li>
+                            <li><span class="price-check price-check-ultimate">&#10003;</span> Персональный ИИ-тренер и составление плана питания</li>
+                            <li><span class="price-check price-check-ultimate">&#10003;</span> Бесплатная заморозка абонемента до 60 дней</li>
+                            <li><span class="price-check price-check-ultimate">&#10003;</span> Скидка 30% на все виды массажа и услуги фитобара</li>
+                            <li><span class="price-check price-check-ultimate">&#10003;</span> Персональный VIP-шкафчик, закреплённый за вами</li>
+                            <li><span class="price-check price-check-ultimate">&#10003;</span> Гарантированное появление пресса за 2 недели</li>
+                        </ul>
+                    </div>
+
+                    <div class="price-footer">
+                        <button class="btn btn-price btn-price-ultimate">Выбрать ULTIMATE</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+{% comment %} >>> Секция -> Тренеры <<< {% endcomment %}
+
+
+<section id="trainers" class="site-section">
+    <div class="container-xl">
+
+        <h2 class="site-title">ТРЕНЕРЫ</h2>
+        <p class="site-subtitle">Самый быстрый, эффективный и безопасный путь к достижению поставленных фитнес-целей</p>
+
+        <div class="row g-4">
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="trainer-card">
+                    <div class="trainer-img-wrapper">
+                        <img src="{% static 'landing/images/no_trainer.png' %}" alt="Максим Громов" class="trainer-img">
+                        <span class="trainer-experience">стаж 9 лет</span>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Максим Громов</h3>
+                        <p class="trainer-role">Силовой тренинг и бодибилдинг</p>
+                        <button class="btn btn-trainer-more">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="trainer-card">
+                    <div class="trainer-img-wrapper">
+                        <img src="{% static 'landing/images/no_trainer.png' %}" alt="Елена Ковалева" class="trainer-img">
+                        <span class="trainer-experience">стаж 7 лет</span>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Елена Ковалева</h3>
+                        <p class="trainer-role">Тренер групповых программ</p>
+                        <button class="btn btn-trainer-more">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="trainer-card">
+                    <div class="trainer-img-wrapper">
+                        <img src="{% static 'landing/images/no_trainer.png' %}" alt="Дмитрий Соколов" class="trainer-img">
+                        <span class="trainer-experience">стаж 12 лет</span>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Дмитрий Соколов</h3>
+                        <p class="trainer-role">Персональный тренер и функционал</p>
+                        <button class="btn btn-trainer-more">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="trainer-card">
+                    <div class="trainer-img-wrapper">
+                        <img src="{% static 'landing/images/no_trainer.png' %}" alt="Анна Морозова" class="trainer-img">
+                        <span class="trainer-experience">стаж 5 лет</span>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Анна Морозова</h3>
+                        <p class="trainer-role">Стретчинг и пилатес</p>
+                        <button class="btn btn-trainer-more">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="trainer-card">
+                    <div class="trainer-img-wrapper">
+                        <img src="{% static 'landing/images/no_trainer.png' %}" alt="Артём Волков" class="trainer-img">
+                        <span class="trainer-experience">стаж 8 лет</span>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Артём Волков</h3>
+                        <p class="trainer-role">Кроссфит и выносливость</p>
+                        <button class="btn btn-trainer-more">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="trainer-card">
+                    <div class="trainer-img-wrapper">
+                        <img src="{% static 'landing/images/no_trainer.png' %}" alt="Виктория Орлова" class="trainer-img">
+                        <span class="trainer-experience">стаж 6 лет</span>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Виктория Орлова</h3>
+                        <p class="trainer-role">Йога и TRX-тренировки</p>
+                        <button class="btn btn-trainer-more">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="trainer-card">
+                    <div class="trainer-img-wrapper">
+                        <img src="{% static 'landing/images/no_trainer.png' %}" alt="Игорь Белов" class="trainer-img">
+                        <span class="trainer-experience">стаж 11 лет</span>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Игорь Белов</h3>
+                        <p class="trainer-role">Тяжелая атлетика и пауэрлифтинг</p>
+                        <button class="btn btn-trainer-more">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="trainer-card">
+                    <div class="trainer-img-wrapper">
+                        <img src="{% static 'landing/images/no_trainer.png' %}" alt="Дарья Зайцева" class="trainer-img">
+                        <span class="trainer-experience">стаж 10 лет</span>
+                    </div>
+                    <div class="trainer-info">
+                        <h3 class="trainer-name">Дарья Зайцева</h3>
+                        <p class="trainer-role">Реабилитация и ЛФК</p>
+                        <button class="btn btn-trainer-more">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+{% comment %} >>> Секция -> Вопросы и Ответы <<< {% endcomment %}
+
+
+<section id="faq" class="site-section">
+    <div class="container-xl"><h2 class="site-title">Вопросы и Ответы</h2></div>
+</section>
+{% endblock %}

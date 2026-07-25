@@ -1,6 +1,6 @@
 [project]
 name = "SportHub"
-version = "0.3"
+version = "0.3.3"
 description = "Тестовое задание на Django"
 readme = "README.md"
 requires-python = ">=3.14"

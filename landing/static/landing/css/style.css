@@ -532,3 +532,74 @@ body {
     border-color: #fc7b02;
     color: #ffffff;
 }
+
+
+/*
+    >>> Адаптивные стили для мобильных устройств (экраны меньше 768px) <<<
+*/
+
+
+@media (max-width: 768px) {
+
+    .site-title {
+        font-size: 32px;
+    }
+
+    .site-subtitle {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+
+    .custom-navbar {
+        padding: 8px 16px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .logo-img {
+        height: 36px;
+    }
+
+    .btn-subscribe {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .site-card {
+        padding: 24px;
+    }
+
+    .price-header {
+        padding: 18px 20px;
+    }
+
+    .price-name {
+        font-size: 22px;
+    }
+
+    .price-value {
+        font-size: 22px;
+    }
+
+    .price-body {
+        padding: 20px;
+    }
+
+    .price-footer {
+        padding: 0 20px 20px 20px;
+    }
+
+    .tabs-wrapper {
+        width: 100%;
+        display: flex;
+    }
+
+    .tab-btn, .tab-badge {
+        flex: 1;
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}

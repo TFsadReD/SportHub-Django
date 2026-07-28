@@ -535,6 +535,103 @@ body {
 
 
 /*
+    >>> Секция для вопросов и ответов (FAQ) <<<
+*/
+
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: #171a21;
+    border: 1px solid #242936;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+.faq-item.active {
+    border-color: #fc7b02;
+    background-color: #1c202b;
+    border-radius: 28px;
+}
+
+.faq-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    gap: 20px;
+}
+
+.faq-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    transition: background-color 0.3s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-icon::before,
+.faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+}
+
+.faq-icon::before {
+    width: 18px;
+    height: 2px;
+}
+
+.faq-icon::after {
+    width: 2px;
+    height: 18px;
+}
+
+.faq-item.active .faq-icon {
+    background-color: #fc7b02;
+    transform: rotate(135deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
+}
+
+.faq-item.active .faq-answer {
+    transition: max-height 0.35s ease-in-out;
+}
+
+.faq-answer-content {
+    padding: 0 28px 24px 28px;
+    color: #b0b7c3;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+
+/*
     >>> Адаптивные стили для мобильных устройств (экраны меньше 768px) <<<
 */
 
@@ -601,5 +698,28 @@ body {
         text-align: center;
         padding: 10px 12px;
         font-size: 14px;
+    }
+
+    .faq-question {
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+
+    .faq-answer-content {
+        padding: 0 20px 20px 20px;
+        font-size: 14px;
+    }
+
+    .faq-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .faq-icon::before {
+        width: 14px;
+    }
+
+    .faq-icon::after {
+        height: 14px;
     }
 }

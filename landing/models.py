@@ -42,6 +42,7 @@ class Review(models.Model):
     )
 
     text = models.TextField(
+        max_length=250,
         verbose_name="Текст отзыва",
         help_text="Опишите ваши впечатления от посещения клуба"
     )

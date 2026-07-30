@@ -30,13 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentAnswer = currentItem.querySelector('.faq-answer');
             const isActive = currentItem.classList.contains('active');
 
-            // Закрываем все открытые вопросы (раскомментируй, если нужен строго 1 открытый элемент)
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
                 item.querySelector('.faq-answer').style.maxHeight = null;
             });
 
-            // Если текущий был закрыт — открываем его
             if (!isActive) {
                 currentItem.classList.add('active');
                 currentAnswer.style.maxHeight = currentAnswer.scrollHeight + 'px';
@@ -44,3 +42,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+/**
+ * Обрабатывает отправку формы создания отзыва через AJAX (fetch)
+ * Собирает данные формы, отправляет POST-запрос на сервер,
+ * обрабатывает ответ и выводит уведомление об успехе или ошибке
+ *
+ * `event` - Событие отправки формы
+ */
+async function submitReview(event) {
+    event.preventDefault();
+
+    const form = document.getElementById('add-review-form');
+    const formData = new FormData(form);
+    const successMsg = document.getElementById('review-success-msg');
+
+    try {
+        const response = await fetch('/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            },
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.status === 'success') {
+            successMsg.classList.remove('d-none');
+            form.reset();
+
+            setTimeout(() => {
+                successMsg.classList.add('d-none');
+            }, 5000);
+        } else {
+            alert('Ошибка при отправке: ' + JSON.stringify(result.errors || result.message));
+        }
+    } catch (error) {
+        console.error('Ошибка сети:', error);
+        alert('Не удалось отправить отзыв. Проверьте подключение к интернету.');
+    }
+}

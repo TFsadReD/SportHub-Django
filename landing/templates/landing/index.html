@@ -542,6 +542,72 @@
 
 
 <section id="rev" class="site-section">
-    <div class="container-xl"><h2 class="site-title">Отзывы</h2></div>
+<div class="container-xl">
+        <h2 class="site-title">ОТЗЫВЫ</h2>
+        <p class="site-subtitle">Поделитесь своими впечатлениями о тренировках и сервисе</p>
+
+        <div class="review-form-card">
+            <h3 class="review-form-title">Оставить отзыв</h3>
+
+            <form id="add-review-form" onsubmit="submitReview(event)">
+                {% csrf_token %}
+
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label for="id_author_name" class="form-label-custom">Ваше имя</label>
+                        <input type="text" id="id_author_name" name="author_name" class="form-input-custom" placeholder="Иван Иванов" required maxlength="100">
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <label for="id_assessment" class="form-label-custom">Оценка</label>
+                        <select id="id_assessment" name="assessment" class="form-select-custom" required>
+                            <option value="5" selected>5 ★★★★★ — Идеально</option>
+                            <option value="4">4 ★★★★ — Хорошо</option>
+                            <option value="3">3 ★★★ — Удовлетворительно</option>
+                            <option value="2">2 ★★ — Плохо</option>
+                            <option value="1">1 ★ — Ужасно</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="id_title" class="form-label-custom">Заголовок отзыва</label>
+                        <input type="text" id="id_title" name="title" class="form-input-custom" placeholder="Например: Отличный зал и отзывчивый персонал" required maxlength="50">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="id_text" class="form-label-custom">Текст отзыва</label>
+                        <textarea id="id_text" name="text" class="form-textarea-custom" rows="4" placeholder="Опишите ваши впечатления от посещения клуба..." required></textarea>
+                    </div>
+
+                    <div class="col-12 d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4">
+                        <p class="review-form-note">* Ваш отзыв появится на сайте после проверки модератором</p>
+                        <button type="submit" class="btn btn-subscribe px-4 py-2">Отправить отзыв</button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="review-success-msg" class="review-status-msg success d-none">
+                ✓ Спасибо! Ваш отзыв успешно отправлен на модерацию.
+            </div>
+        </div>
+
+        <div class="reviews-wrapper">
+            {% for review in reviews %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <h3 class="review-author">{{ review.author_name }}</h3>
+                        <span class="review-rating">{{ review.assessment }} ★</span>
+                    </div>
+
+                    <h4 class="review-title">{{ review.title }}</h4>
+                    <p class="review-text">{{ review.text }}</p>
+                    <span class="review-date">{{ review.created_at|date:"d.m.Y" }}</span>
+                </div>
+
+            {% empty %}
+                <p class="no-reviews">Отзывов пока нет. Будьте первыми, кто оставит отзыв!</p>
+            {% endfor %}
+        </div>
+    </div>
 </section>
 {% endblock %}

@@ -3,6 +3,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Review(models.Model):
+    """
+    ## Модель отзыва пользователя на SportHub
+
+    - Хранит имя автора, оценку *(1–5 звёзд)*, заголовок и текст отзыва,
+    а также флаг публикации для отображения на сайте
+    """
     RATING_CHOICES = [
         (1, "1 ★ - Ужасно"),
         (2, "2 ★★ - Плохо"),

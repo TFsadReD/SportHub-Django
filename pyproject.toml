@@ -1,10 +1,15 @@
 [project]
 name = "SportHub"
-version = "0.5.3"
+version = "0.7.2"
 description = "Тестовое задание на Django"
+
+authors = "TFsadReD"
 readme = "README.md"
+license = "MIT License"
+repository = "https://github.com/TFsadReD/SportHub-Django"
+
 requires-python = ">=3.14"
 dependencies = [
     "django>=6.0.7",
-    "dotenv>=0.9.9",
+    "python-dotenv>=1.2.2",
 ]

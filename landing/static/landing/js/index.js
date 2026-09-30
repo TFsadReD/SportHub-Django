@@ -1,8 +1,3 @@
-/**
- * ### Переключает активные табы и их контент в секции тренажёрного зала
- *
- * - `tabName` - Имя таба (`'standards'` или `'amenities'`)
- */
 function switchTab(tabName) {
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
@@ -17,10 +12,6 @@ function switchTab(tabName) {
 }
 
 
-/**
- * ### Инициализация аккордеона в секции FAQ
- * Обеспечивает плавное открытие ответа и поворот иконки плюсика в крестик
- */
 document.addEventListener('DOMContentLoaded', () => {
     const faqQuestions = document.querySelectorAll('.faq-question');
 
@@ -44,32 +35,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/**
- * Обрабатывает отправку формы создания отзыва через AJAX (fetch)
- * Собирает данные формы, отправляет POST-запрос на сервер,
- * обрабатывает ответ и выводит уведомление об успехе или ошибке
- *
- * `event` - Событие отправки формы
- */
+function formatReviewErrors(result) {
+    const errors = result.errors || {};
+    const messages = [];
+
+    Object.values(errors).forEach(fieldErrors => {
+        fieldErrors.forEach(error => messages.push(error));
+    });
+
+    (result.non_field_errors || []).forEach(error => messages.push(error));
+
+    return messages;
+}
+
+
 async function submitReview(event) {
     event.preventDefault();
 
     const form = document.getElementById('add-review-form');
     const formData = new FormData(form);
     const successMsg = document.getElementById('review-success-msg');
+    const errorMsg = document.getElementById('review-error-msg');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const submitBtnText = submitBtn.textContent;
+
+    successMsg.classList.add('d-none');
+    errorMsg.classList.add('d-none');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправка...';
 
     try {
-        const response = await fetch('/', {
+        const response = await fetch(form.action, {
             method: 'POST',
             headers: {
-                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+                'X-Requested-With': 'XMLHttpRequest'
             },
             body: formData
         });
 
-        const result = await response.json();
+        let result = null;
+        try {
+            result = await response.json();
+        } catch (parseError) {
+            result = null;
+        }
 
-        if (response.ok && result.status === 'success') {
+        if (response.ok && result && result.status === 'success') {
             successMsg.classList.remove('d-none');
             form.reset();
 
@@ -77,10 +89,31 @@ async function submitReview(event) {
                 successMsg.classList.add('d-none');
             }, 5000);
         } else {
-            alert('Ошибка при отправке: ' + JSON.stringify(result.errors || result.message));
+            const messages = result ? formatReviewErrors(result) : [];
+            const summary = result && result.message
+                ? result.message
+                : `Сервер вернул ошибку ${response.status}`;
+
+            errorMsg.innerHTML = '';
+
+            const title = document.createElement('div');
+            title.textContent = summary;
+            errorMsg.appendChild(title);
+
+            messages.forEach(message => {
+                const line = document.createElement('div');
+                line.textContent = `• ${message}`;
+                errorMsg.appendChild(line);
+            });
+
+            errorMsg.classList.remove('d-none');
         }
     } catch (error) {
         console.error('Ошибка сети:', error);
-        alert('Не удалось отправить отзыв. Проверьте подключение к интернету.');
+        errorMsg.textContent = 'Не удалось отправить отзыв. Проверьте подключение к интернету.';
+        errorMsg.classList.remove('d-none');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitBtnText;
     }
 }

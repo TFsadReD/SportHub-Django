@@ -21,7 +21,7 @@
         <nav class="custom-navbar d-flex align-items-center justify-content-between">
 
             <a href="#" class="logo d-flex align-items-center text-decoration-none">
-                <img src="{% static 'landing/images/flavicon.png' %}" alt="Logo" class="logo-img">
+                <img src="{% static 'landing/images/favicon.png' %}" alt="SportHub" class="logo-img">
                 <span class="logo-white">Sport</span><span class="logo-orange">Hub</span>
             </a>
 
@@ -549,34 +549,62 @@
         <div class="review-form-card">
             <h3 class="review-form-title">Оставить отзыв</h3>
 
-            <form id="add-review-form" onsubmit="submitReview(event)">
+            <form id="add-review-form"
+                  action="{% url 'landing:review_create' %}"
+                  method="post"
+                  novalidate
+                  onsubmit="submitReview(event)">
                 {% csrf_token %}
+
+                {% if review_form.non_field_errors %}
+                    <div class="review-status-msg error mb-3">
+                        {% for error in review_form.non_field_errors %}{{ error }}{% endfor %}
+                    </div>
+                {% endif %}
 
                 <div class="row g-3">
                     <div class="col-12 col-md-6">
-                        <label for="id_author_name" class="form-label-custom">Ваше имя</label>
-                        <input type="text" id="id_author_name" name="author_name" class="form-input-custom" placeholder="Иван Иванов" required maxlength="100">
+                        <label for="{{ review_form.author_name.id_for_label }}" class="form-label-custom">{{ review_form.author_name.label }}</label>
+                        {{ review_form.author_name }}
+                        {% if review_form.author_name.help_text %}
+                            <div class="form-help-text" id="{{ review_form.author_name.auto_id }}_helptext">{{ review_form.author_name.help_text }}</div>
+                        {% endif %}
+                        {% if review_form.author_name.errors %}
+                            <div class="field-error">{{ review_form.author_name.errors|striptags }}</div>
+                        {% endif %}
                     </div>
 
                     <div class="col-12 col-md-6">
-                        <label for="id_assessment" class="form-label-custom">Оценка</label>
-                        <select id="id_assessment" name="assessment" class="form-select-custom" required>
-                            <option value="5" selected>5 ★★★★★ — Идеально</option>
-                            <option value="4">4 ★★★★ — Хорошо</option>
-                            <option value="3">3 ★★★ — Удовлетворительно</option>
-                            <option value="2">2 ★★ — Плохо</option>
-                            <option value="1">1 ★ — Ужасно</option>
-                        </select>
+                        <label for="{{ review_form.assessment.id_for_label }}" class="form-label-custom">{{ review_form.assessment.label }}</label>
+                        {{ review_form.assessment }}
+                        {% if review_form.assessment.help_text %}
+                            <div class="form-help-text" id="{{ review_form.assessment.auto_id }}_helptext">{{ review_form.assessment.help_text }}</div>
+                        {% endif %}
+                        {% if review_form.assessment.errors %}
+                            <div class="field-error">{{ review_form.assessment.errors|striptags }}</div>
+                        {% endif %}
                     </div>
 
                     <div class="col-12">
-                        <label for="id_title" class="form-label-custom">Заголовок отзыва</label>
-                        <input type="text" id="id_title" name="title" class="form-input-custom" placeholder="Например: Отличный зал и отзывчивый персонал" required maxlength="50">
+                        <label for="{{ review_form.title.id_for_label }}" class="form-label-custom">{{ review_form.title.label }}</label>
+                        {{ review_form.title }}
+                        {% if review_form.title.help_text %}
+                            <div class="form-help-text" id="{{ review_form.title.auto_id }}_helptext">{{ review_form.title.help_text }}</div>
+                        {% endif %}
+                        {% if review_form.title.errors %}
+                            <div class="field-error">{{ review_form.title.errors|striptags }}</div>
+                        {% endif %}
                     </div>
 
                     <div class="col-12">
-                        <label for="id_text" class="form-label-custom">Текст отзыва</label>
-                        <textarea id="id_text" name="text" class="form-textarea-custom" rows="4" maxlength="250" placeholder="Опишите ваши впечатления от посещения клуба..." required></textarea>
+                        <label for="{{ review_form.text.id_for_label }}" class="form-label-custom">{{ review_form.text.label }}</label>
+                        {{ review_form.text }}
+                        {% if review_form.text.help_text %}
+                            <div class="form-help-text" id="{{ review_form.text.auto_id }}_helptext">{{ review_form.text.help_text }}</div>
+                        {% endif %}
+                        {% if review_form.text.errors %}
+                            <div class="field-error">{{ review_form.text.errors|striptags }}</div>
+                        {% endif %}
                     </div>
 
                     <div class="col-12 d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4">
@@ -589,6 +617,8 @@
             <div id="review-success-msg" class="review-status-msg success d-none">
                 ✓ Спасибо! Ваш отзыв успешно отправлен на модерацию.
             </div>
+
+            <div id="review-error-msg" class="review-status-msg error d-none"></div>
         </div>
 
         <div class="reviews-wrapper">

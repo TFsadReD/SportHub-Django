@@ -1,30 +1,44 @@
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.views.decorators.http import require_GET, require_POST
 
+from .forms import ReviewForm
 from .models import Review
 
 
+@require_GET
 def index(request):
-    if request.method == "POST":
-        author_name = request.POST.get("author_name")
-        assessment = request.POST.get("assessment")
-        title = request.POST.get("title")
-        text = request.POST.get("text")
+    reviews = Review.objects.filter(is_published=True)
+    return render(
+        request,
+        "landing/index.html",
+        {
+            "reviews": reviews,
+            "review_form": ReviewForm(),
+        },
+    )
 
-        if author_name and assessment and title and text:
-            Review.objects.create(
-                author_name=author_name,
-                assessment=int(assessment),
-                title=title,
-                text=text,
-                is_published=False
-            )
 
-            return JsonResponse({"status": "success", "message": "Отзыв отправлен на модерацию"})
-        return JsonResponse({"status": "error", "message": "Заполните все поля"}, status=400)
+@require_POST
+def review_create(request):
+    form = ReviewForm(request.POST)
 
-    approved_reviews = Review.objects.filter(is_published=True)
-    context = {
-        "reviews": approved_reviews
-    }
-    return render(request, "landing/index.html", context)
+    if not form.is_valid():
+        return JsonResponse(
+            {
+                "status": "error",
+                "message": "Проверьте правильность заполнения формы",
+                "errors": form.errors,
+                "non_field_errors": form.non_field_errors(),
+            },
+            status=400,
+        )
+
+    review = form.save(commit=False)
+    review.is_published = False
+    review.save()
+
+    return JsonResponse(
+        {"status": "success", "message": "Отзыв отправлен на модерацию"},
+        status=201,
+    )
